@@ -13,7 +13,9 @@ process.chdir(__dirname);
 describe('stackdump', function() {
   it('will create a dump file', function(done) {
     this.timeout(4000);
-    const proc = cp.spawn(process.execPath, ['-r', stackdump, fixture]);
+    const proc = cp.spawn(process.execPath, ['-r', stackdump, fixture], {
+      stdio: 'inherit'
+    });
     proc.on('exit', function() {
       let found = false;
       for (const name of fs.readdirSync(__dirname)) {
@@ -34,7 +36,8 @@ describe('stackdump', function() {
     const proc = cp.spawn(process.execPath, ['-r', stackdump, fixture], {
       env: {
         STACKDUMP_FILE: filename
-      }
+      },
+      stdio: 'inherit'
     });
     proc.on('exit', function() {
       assert(fs.existsSync(filename));
