@@ -1,0 +1,43 @@
+{
+  "name": "stackdump",
+  "version": "1.0.0-alpha0",
+  "description": "Get a dump file for your stack and inspect it in a browser",
+  "engine": ">=8.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "bin": {
+    "stackdump-view": "./bin/stackdump-view.js"
+  },
+  "dependencies": {
+    "cold-storage": "^1.0.0",
+    "stuck": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "test": "nyc mocha",
+    "prepare": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/addaleax/stackdump.git"
+  },
+  "keywords": [
+    "stack",
+    "trace",
+    "inspection",
+    "inspector",
+    "diagnostics"
+  ],
+  "author": "Anna Henningsen <anna@addaleax.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/addaleax/stackdump/issues"
+  },
+  "homepage": "https://github.com/addaleax/stackdump#readme"
+}
