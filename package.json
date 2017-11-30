@@ -1,6 +1,6 @@
 {
   "name": "stackdump",
-  "version": "1.0.0-alpha1",
+  "version": "1.0.0-alpha3",
   "description": "Get a dump file for your stack and inspect it in a browser",
   "engine": ">=8.0.0",
   "main": "index.js",
@@ -11,7 +11,8 @@
     "stackdump-view": "./bin/stackdump-view.js"
   },
   "dependencies": {
-    "cold-storage": "^1.0.0",
+    "cold-storage": "^2.0.0",
+    "set-promise-reject-callback": "^1.0.0",
     "stuck": "^1.0.0"
   },
   "devDependencies": {

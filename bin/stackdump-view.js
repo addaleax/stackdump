@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 'use strict';
+const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
-const { deserialize } = require('cold-storage');
+const {
+  deserialize: { Context: DeserializerContext },
+  serialize,
+  deserialize
+} = require('cold-storage');
 
 const filename = process.argv[2];
 
@@ -15,9 +20,12 @@ try {
 }
 
 try {
-  // Just make sure it's deserializable. We're still going to use the
-  // base64 version for display.
-  deserialize(data);
+  // Deserialize into a single buffer.
+  const ctx = new DeserializerContext(data);
+  const warmup = ctx.deserialize();
+  const deserialized = ctx.deserialize();
+  data = serialize(deserialized);
+  assert.strictEqual(deserialized.global, warmup.global);
 } catch (e) {
   console.error('File could not be parsed:', filename, e);
   return process.exitCode = 1;

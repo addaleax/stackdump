@@ -7,6 +7,7 @@ const cp = require('child_process');
 const fs = require('fs');
 
 const fixture = path.resolve(__dirname, 'fixtures/crashing-script.js');
+const fixture2 = path.resolve(__dirname, 'fixtures/immediately-handled.js');
 const stackdump = path.resolve(__dirname, '..');
 process.chdir(__dirname);
 
@@ -41,6 +42,22 @@ describe('stackdump', function() {
     });
     proc.on('exit', function() {
       assert(fs.existsSync(filename));
+      done();
+    });
+  });
+
+  it('will not create a dump file for handled rejections', function(done) {
+    this.timeout(4000);
+    const filename = path.resolve(__dirname, 'target-donotcreate.dump');
+    try { fs.unlinkSync(filename); } catch (e) {}
+    const proc = cp.spawn(process.execPath, ['-r', stackdump, fixture2], {
+      env: {
+        STACKDUMP_FILE: filename
+      },
+      stdio: 'inherit'
+    });
+    proc.on('exit', function() {
+      assert(!fs.existsSync(filename));
       done();
     });
   });
