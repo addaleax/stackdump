@@ -1,4 +1,4 @@
 'use strict';
-setTimeout(function() {
+setTimeout(function foo() {
   Promise.reject(new Error('foo'));
 }, 10);
