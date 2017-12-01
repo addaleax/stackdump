@@ -40,3 +40,4 @@ const html = fs.readFileSync(
 fs.writeFileSync(output,
   html.replace(/__VIEW_DATA__/g, JSON.stringify(data.toString('base64')))
       .replace(/__BUNDLE__/g, bundle));
+module.exports = output;

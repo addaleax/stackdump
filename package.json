@@ -8,10 +8,12 @@
     "test": "test"
   },
   "bin": {
-    "stackdump-view": "./bin/stackdump-view.js"
+    "stackdump-html": "./bin/stackdump-html.js",
+    "stackdump-open": "./bin/stackdump-open.js"
   },
   "dependencies": {
     "cold-storage": "^2.0.0",
+    "opn": "^5.1.0",
     "set-promise-reject-callback": "^1.0.0",
     "stuck": "^1.0.0"
   },

@@ -35,7 +35,7 @@ Creates a core dump file with a name like `node-21992-20171130T221243.dump`
 Inspect that file in the browser:
 
 ```
-$ stackdump-view node-21992-20171130T221243.dump
+$ stackdump-open node-21992-20171130T221243.dump
 ```
 
 License
