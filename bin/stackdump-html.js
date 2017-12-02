@@ -22,10 +22,12 @@ try {
 try {
   // Deserialize into a single buffer.
   const ctx = new DeserializerContext(data);
-  const warmup = ctx.deserialize();
+  ctx.deserialize({ global });
   const deserialized = ctx.deserialize();
-  data = serialize(deserialized);
-  assert.strictEqual(deserialized.global, warmup.global);
+  // Check
+  serialize(deserialized);
+  assert.strictEqual(deserialized.global, global);
+  assert.strictEqual(deserialized.global.Uint8Array, Uint8Array);
 } catch (e) {
   console.error('File could not be parsed:', filename, e);
   return process.exitCode = 1;
